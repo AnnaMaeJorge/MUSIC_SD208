@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2020 at 02:00 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- Generation Time: Nov 04, 2022 at 12:52 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,9 +40,21 @@ CREATE TABLE `genres` (
 --
 
 INSERT INTO `genres` (`id`, `genre`, `description`, `cover_photo`, `date_created`) VALUES
-(1, 'Pop', 'Popular music', '1605745560_play.jpg', '2020-11-19 08:26:53'),
-(2, 'Rock', ' Its loud and strong beats make it popular among the youths.', 'default_cover.jpg', '2020-11-19 08:29:13'),
-(3, 'Country Music', 'Country Music', 'default_cover.jpg', '2020-11-19 08:59:17');
+(1, 'Pop', 'Popular music', 'unnamed (1).jpg', '2022-11-03 00:00:00'),
+(2, 'Rock', ' Its loud and strong beats make it popular among the youths.', '1605833760_m3.jpg', '2022-11-03 00:00:00'),
+(3, 'Country Music', 'Country Music', '1605833760_m3.jpg', '2022-11-03 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `musics`
+--
+
+CREATE TABLE `musics` (
+  `id` int(255) NOT NULL,
+  `Musicname` varchar(255) DEFAULT NULL,
+  `Artistname` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -64,9 +76,7 @@ CREATE TABLE `playlist` (
 --
 
 INSERT INTO `playlist` (`id`, `user_id`, `title`, `description`, `cover_image`, `date_created`) VALUES
-(1, 1, 'Playlist 1', 'Nunc pellentesque at erat eu vulputate. Integer ornare nec mauris ac sodales. Maecenas venenatis rutrum urna at faucibus. Aenean feugiat, purus ac venenatis mollis, lectus nunc dapibus mauris, sed imperdiet erat augue eu mauris. In eu diam eleifend, accumsan massa vitae, tempor velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis imperdiet tortor lectus, et scelerisque massa efficitur a. In hendrerit felis nec gravida cursus. Suspendisse aliquet est vel lacus venenatis interdum. Vestibulum quis risus dolor. Aliquam feugiat sagittis nibh, id dignissim ipsum mollis et. Nunc nec sapien ligula. Donec laoreet leo eget velit tristique, vitae pulvinar velit hendrerit.', '1605833520_m2.jpg', '2020-11-20 08:52:36'),
-(2, 2, 'Playlist 2', 'Nulla sollicitudin laoreet elit quis interdum. Nam dictum convallis suscipit. Etiam in sapien mauris. Nunc varius metus tortor, at porta tortor aliquet vel. Praesent a augue laoreet, mattis justo a, posuere nulla. Donec dictum tortor vel metus interdum dignissim. Vestibulum commodo aliquam gravida. Nulla facilisi.', 'play.jpg', '2020-11-20 08:58:35'),
-(3, 2, 'My Playlist', 'Sample', '1605833940_h1.jpg', '2020-11-20 08:59:23');
+(4, 5, 'POP', '', '1667476320_play.jpg', '2022-11-03 19:52:47');
 
 -- --------------------------------------------------------
 
@@ -89,7 +99,9 @@ INSERT INTO `playlist_items` (`id`, `playlist_id`, `music_id`, `date_created`) V
 (1, 6, 1, '2020-11-20 08:52:51'),
 (2, 2, 2, '2020-11-20 08:58:44'),
 (3, 3, 2, '2020-11-20 08:59:46'),
-(4, 3, 1, '2020-11-20 08:59:46');
+(4, 3, 1, '2020-11-20 08:59:46'),
+(10, 4, 12, '2022-11-03 21:07:22'),
+(11, 4, 8, '2022-11-03 21:07:22');
 
 -- --------------------------------------------------------
 
@@ -114,8 +126,12 @@ CREATE TABLE `uploads` (
 --
 
 INSERT INTO `uploads` (`id`, `user_id`, `genre_id`, `title`, `artist`, `description`, `upath`, `cover_image`, `date_created`) VALUES
-(1, 1, 2, 'Song 101', 'BenSound', '&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: &amp;quot;Open Sans&amp;quot;, Arial, sans-serif; font-size: 14px; text-align: justify;&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas est massa, non ullamcorper augue sodales non. Morbi mollis venenatis augue sit amet lacinia. Cras tempor tempor urna, nec consectetur tellus ullamcorper quis. Mauris vitae blandit tellus. Sed feugiat tincidunt malesuada. Cras egestas consequat molestie. Ut non ex nec tellus vestibulum tincidunt. Suspendisse facilisis lorem id sapien euismod, id gravida felis blandit. Nam quis diam tempor, luctus nisl at, auctor velit. Nunc rhoncus, turpis et ornare sagittis, metus diam dignissim dolor, non faucibus quam leo ut lectus. Etiam accumsan tellus eu hendrerit posuere. Aliquam erat volutpat. Donec fermentum purus odio, vel sodales sapien lobortis eu. Sed neque tellus, sagittis id scelerisque at, luctus ac felis.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '1605833220_bensound-creativeminds.mp3', '1605833220_m1.jpg', 2147483647),
-(2, 2, 1, 'Song 102', 'BenSound', '&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: &amp;quot;Open Sans&amp;quot;, Arial, sans-serif; font-size: 14px; text-align: justify;&quot;&gt;Ut facilisis, mi eget semper euismod, urna mauris tristique ipsum, a auctor tortor leo a arcu. Duis nec felis eget diam scelerisque porttitor. Etiam ullamcorper leo auctor, imperdiet diam nec, scelerisque lacus. Sed at ornare tortor. Praesent volutpat, lacus eu molestie elementum, purus nulla pellentesque eros, sit amet viverra ex nisl quis risus. Etiam elementum posuere odio vitae lacinia. Nunc magna nunc, placerat ut neque vitae, dignissim eleifend sapien. Phasellus arcu felis, maximus vel ultrices quis, aliquam ac sapien. Sed aliquet interdum sollicitudin. Maecenas blandit tellus eget risus finibus, non gravida nunc pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;', '1605833760_bensound-energy.mp3', '1605833760_m3.jpg', 2147483647);
+(8, 5, 1, 'Faded', 'Alan Walker', '', '1667475840_music_Faded.mp3', '1667475840_faded.png', 2147483647),
+(9, 5, 1, 'Falling Down', 'ft. James Delaney', '', '1667476140_music_fallingdown.mp3', '1667476140_fallingdown.jpg', 2147483647),
+(10, 5, 1, 'Rather Be', 'Clean Bandit', '', '1667476260_music_Rather Be.mp3', '1667476260_ratherbe.jpg', 2147483647),
+(11, 5, 1, 'Stay', 'The Kid LAROI, Justin Bieber', '', '1667476320_music_stay.mp3', '1667476320_stay.png', 2147483647),
+(12, 7, 1, 'Butter', 'BTS (방탄소년단)', '', '1667479020_BTS (방탄소년단) - Butter (Official Audio).mp3', '1667479020_unnamed.jpg', 2147483647),
+(13, 7, 3, 'Scars to your Beautiful', 'Alessia Cara', '', '1667547600_Alessia Cara - Scars To Your Beautiful (Official Audio).mp3', '1667547600_alessia.jpg', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -143,7 +159,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `gender`, `contact`, `address`, `email`, `password`, `type`, `profile_pic`, `date_created`) VALUES
 (1, 'Administrator', '', 'Male', '+123546879', '', 'admin@admin.com', '0192023a7bbd73250516f069df18b500', 1, '', '2020-11-18 16:50:06'),
-(2, 'John', 'Smith', 'Male', '+6948 8542 623', 'Sample address', 'jsmith@sample.com', '1254737c076cf867dc53d60a0364f38e', 2, '1605833640_avatar.jpg', '2020-11-20 08:54:15');
+(6, 'Janrae', 'Fagaragan', 'Male', '09353547669', 'Talamban Cebu City', 'janraefagaragan@gmail.com', '25f9e794323b453885f5181f1b624d0b', 2, '1667465520_faded.png', '2022-11-03 16:52:19'),
+(7, 'Anna Mae', 'Jorge', 'Female', '0987654321', 'Cebu City', 'annamaejorge7@gmail.com', 'ca321bc4e7b208ae23d2a327dd306769', 2, '1667476800_299481451_1710367196001497_1860372956878608606_n.jpg', '2022-11-03 20:00:31');
 
 --
 -- Indexes for dumped tables
@@ -153,6 +170,12 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `gender`, `contact`, `addres
 -- Indexes for table `genres`
 --
 ALTER TABLE `genres`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `musics`
+--
+ALTER TABLE `musics`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -190,28 +213,34 @@ ALTER TABLE `genres`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `musics`
+--
+ALTER TABLE `musics`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `playlist_items`
 --
 ALTER TABLE `playlist_items`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
